@@ -1,13 +1,16 @@
 <?php
+
+use core\Db\DbConnection;
+use core\Model\UserModel;
+use core\Util\Validator;
+
 session_start();
 include_once "core/db/connection.php";
 include_once "core/utils/validator.php";
 include_once "core/model/user_model.php";
 
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $conn = new DbConnection();
-    $dbConn =  $conn->getConnection();
+    $dbConn = DbConnection::getConnection();
     $validation = new Validator();
     $userModel = new UserModel();
 
@@ -31,13 +34,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $user = $userModel->getUserByEmail($email);
             $passwordDb = $user['password'];
 
-            if($passwordDb == md5($password)){
+            if ($passwordDb == md5($password)) {
                 $_SESSION["email"] = $user['email'];
                 $_SESSION["name"] = $user['fullName'];
                 $_SESSION["login"] = "true";
-                
+
                 header("Location: dashboard.php");
-            }else{
+            } else {
                 $errorH = "Invalid credentials";
             }
         } else {
@@ -51,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html>
 <title>Login || Angel System</title>
-<?php include_once "includes/css.php"; ?>
+<?php include_once "includes/css.php";?>
 
 <body>
     <div class="main-content">
@@ -63,8 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <p>Provide credentials</p>
             </div>
 
-            
-            <?php include_once 'includes/error_msg.php'; ?>
+
+            <?php include_once 'includes/error_msg.php';?>
 
 
             <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="form-group">
@@ -87,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     </div>
 
-    <?php include_once "includes/js.php"; ?>
+    <?php include_once "includes/js.php";?>
 </body>
 
 </html>

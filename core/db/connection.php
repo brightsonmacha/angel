@@ -1,4 +1,6 @@
 <?php
+namespace core\Db;
+
 define('DB_NAME', 'angel');
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
@@ -7,7 +9,7 @@ define('DB_PASSWORD', '');
 class DbConnection
 {
 
-    function getConnection()
+    public static function getConnection()
     {
         $db_connection = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 

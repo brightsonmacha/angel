@@ -1,13 +1,15 @@
 <?php
+use core\Db\DbConnection;
+use core\Model\UserModel;
+use core\Util\Validator;
+
 session_start();
 include_once "core/db/connection.php";
 include_once "core/utils/validator.php";
 include_once "core/model/user_model.php";
 
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $conn = new DbConnection();
-    $dbConn =  $conn->getConnection();
+    $dbConn = DbConnection::getConnection();
     $validation = new Validator();
     $userModel = new UserModel();
 
@@ -38,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($userModel->checkEmailExist($email)) {
                 $errorH = "Email exist, try different.";
             } else {
-                $passwordH =  md5($password);
+                $passwordH = md5($password);
                 $regResult = $userModel->registerUser($name, $email, $passwordH);
                 if ($regResult) {
                     $msg = "Successfuly Registration";
@@ -57,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html>
 <title>Register || Angel System</title>
-<?php include_once "includes/css.php"; ?>
+<?php include_once "includes/css.php";?>
 
 <body>
     <div class="main-content">
@@ -68,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <p>Please fill in this form to create an account.</p>
             </div>
 
-            <?php include_once 'includes/error_msg.php'; ?>
+            <?php include_once 'includes/error_msg.php';?>
 
 
             <form method="POST" action="" class="form-group">
@@ -97,8 +99,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
     <?php
-    include_once "includes/js.php";
-    ?>
+include_once "includes/js.php";
+?>
 </body>
 
 </html>

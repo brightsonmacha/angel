@@ -1,5 +1,9 @@
 <?php
-class Validator{
+namespace core\Util;
+use core\Db\DbConnection;
+
+class Validator
+{
     public function validateEmail($data)
     {
         $data = filter_var($data, FILTER_SANITIZE_EMAIL);
@@ -22,7 +26,6 @@ class Validator{
 
     public function sanitizeInput($data)
     {
-        global $dbConn;
-        return mysqli_real_escape_string($dbConn, $this->clearData($data));
+        return mysqli_real_escape_string(DbConnection::getConnection(), $this->clearData($data));
     }
 }
