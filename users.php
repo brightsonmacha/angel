@@ -13,7 +13,7 @@ include_once "core/auth/checklogin.php";
 
         <div class="sidebar rnd4">
             <a href="dashboard.php">Dashboard</a>
-            <a href="">Cars</a>
+            <a href="cars.php">Cars</a>
             <a href="">Rent</a>
             <a class="active" href="users.php">Users</a>
             <a href="logout.php">Logout</a>
