@@ -245,3 +245,32 @@ input[type=password]:focus {
         float: none;
     }
 }
+
+/* Cars page */
+
+.car-form {
+    max-width: 500px;
+    margin-bottom: 30px;
+}
+
+.car-form .btn {
+    width: auto;
+    padding: 14px 24px;
+}
+
+.car-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.car-table th,
+.car-table td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.car-table th {
+    background-color: #f8f8f8;
+}
